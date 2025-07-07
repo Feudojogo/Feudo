@@ -19,6 +19,7 @@
     }
 
     #mapa {
+      min-width: 800px;
       width: 800px;       /* 8 colunas * 100px */
       height: 500px;      /* 5 linhas * 100px */
       display: grid;
@@ -295,16 +296,19 @@
     /* --- Responsividade simples: escala o mapa em telas menores --- */
     @media (max-width: 900px) {
       #mapa {
+      min-width: 800px;
         transform: scale(0.8);
       }
     }
     @media (max-width: 680px) {
       #mapa {
+      min-width: 800px;
         transform: scale(0.6);
       }
     }
     @media (max-width: 480px) {
       #mapa {
+      min-width: 800px;
         transform: scale(0.5);
       }
     }
@@ -313,7 +317,7 @@
 </head>
 <body>
 
-  <div id="mapa"></div>
+  <div style="overflow-x: auto; width: 100%;"><div id="mapa"></div></div>
 
   <div id="colunaOuro">
     <h2>Ouro</h2>
