@@ -19,6 +19,8 @@
     }
 
     #mapa {
+      min-width: 800px;
+      flex-shrink: 0;
       width: 800px;       /* 8 colunas * 100px */
       height: 500px;      /* 5 linhas * 100px */
       display: grid;
@@ -306,7 +308,9 @@
 </head>
 <body>
 
+  <div id="mapaWrapper" style="width: 100%; overflow-x: auto; display: flex; justify-content: center;">
   <div id="mapa"></div>
+</div>
 
   <div id="colunaOuro">
     <h2>Ouro</h2>
