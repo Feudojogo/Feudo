@@ -5,7 +5,6 @@
   <title>Feudo 🌱 - Mapa, Ouro e Missões</title>
   <style>
     body {
-  min-width: 1000px;
       margin: 0;
       height: 100vh;
       display: flex;
@@ -18,14 +17,14 @@
     }
 
     #mapa {
-      width: 500px;       /* 8 colunas * 100px */
-      height: 800px;      /* 5 linhas * 100px */
+      width: 800px;       /* 8 colunas * 100px */
+      height: 500px;      /* 5 linhas * 100px */
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(8, 1fr);
+      grid-template-columns: repeat(8, 100px);
+      grid-template-rows: repeat(5, 100px);
       gap: 0;
-      background-image: url('MAPA.png');
-      background-size: 500px 800px;
+      background-image: url('MAPA.png?v=2');
+      background-size: 800px 500px;
       user-select: none;
       position: relative;
       overflow: hidden;
@@ -303,6 +302,7 @@
     <h2>Missões reais</h2>
     <div id="pilhaCartas" title="Clique para puxar próxima missão"></div>
     <div id="textoPilha"></div>
+    <button id="btnVoltarCarta" style="margin-top:10px;padding:6px 12px;font-weight:bold;border-radius:6px;border:none;background:#4CAF50;color:#fff;cursor:pointer;">Voltar carta</button>
     <div id="cartaAtual">
       <button id="btnDescartar" title="Descartar missão atual">&times;</button>
     </div>
@@ -337,6 +337,7 @@
   cartas = embaralhar(cartas);
 
   let indiceCartaAtual = -1;
+  const discardStack = [];
 
   function atualizarTextoPilha() {
     if (indiceCartaAtual < 0 || indiceCartaAtual >= cartas.length) {
@@ -549,12 +550,25 @@
     modalOverlay.style.display = "none";
   }
 
+  
+  const btnVoltar = document.getElementById('btnVoltarCarta');
+  btnVoltar.addEventListener('click', () => {
+    if (discardStack.length === 0) return;
+    cartaAtualDiv.style.display = 'none';
+    indiceCartaAtual = discardStack.pop();
+    mostrarCartaAtual();
+    atualizarTextoPilha();
+  });
+
   // Inicialização
   atualizarMapa();
   atualizarContadores();
   atualizarTextoPilha();
 
   pilhaCartasDiv.onclick = () => {
+    while(indiceCartaAtual < cartas.length - 1 && discardStack.includes(indiceCartaAtual + 1)) {
+      indiceCartaAtual++;
+    }
     if (indiceCartaAtual < cartas.length - 1) {
       indiceCartaAtual++;
       mostrarCartaAtual();
@@ -568,7 +582,10 @@
   };
 
   btnDescartar.onclick = () => {
-    cartaAtualDiv.style.display = "none";
+    if(indiceCartaAtual >= 0){
+      discardStack.push(indiceCartaAtual);
+      cartaAtualDiv.style.display = "none";
+    }
   };
 </script>
 
