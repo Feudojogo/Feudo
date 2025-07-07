@@ -295,6 +295,20 @@
   
     /* ===== Mobile layout: columns join flow, body scrolls horizontally ===== */
     
+      #colunaOuro,
+      #colunaBaralho {
+        position: static;
+        height: auto;
+        top: auto;
+        right: auto;
+      }
+      #mapaWrapper {
+        overflow-x: auto;
+      }
+    }
+
+  
+    /* ===== Mobile layout ===== */
     @media (max-width: 900px) {
       body {
         display: block;
@@ -308,28 +322,16 @@
         height: auto;
         top: auto;
         right: auto;
-        display: inline-block;
-        vertical-align: top;
-        width: 48%;
+        width: 45%%;
+        max-width: 160px;
       }
-      #colunaOuro {
-        margin-right: 2%;
-      }
-      #colunaBaralho {
-        margin-left: 2%;
-      }
-      #mapaWrapper {
-        overflow-x: auto;
-        margin-bottom: 20px;
-      }
-    }
-
-      #colunaOuro,
-      #colunaBaralho {
-        position: static;
-        height: auto;
-        top: auto;
-        right: auto;
+      #painelInferior {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%%;
+        margin-top: 20px;
       }
       #mapaWrapper {
         overflow-x: auto;
@@ -342,13 +344,15 @@
 
   <div id="mapaWrapper" style="overflow-x:auto; overflow-y:hidden;"><div id="mapa"></div></div>
 
-  <div id="colunaOuro">
+  <div id="painelInferior">
+<div id="colunaOuro">
     <h2>Ouro</h2>
   </div>
 
   <div id="colunaBaralho">
     <h2>Missões reais</h2>
     <div id="pilhaCartas" title="Clique para puxar próxima missão"></div>
+</div>
     <div id="textoPilha"></div>
     <div id="cartaAtual">
       <button id="btnDescartar" title="Descartar missão atual">&times;</button>
