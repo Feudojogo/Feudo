@@ -289,20 +289,22 @@
       color: white;
     }
   
-  @media (max-width: 768px) {
-    #mapaContainer {
-      width: 560px;
-      height: 350px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  @media (max-width: 767px) {
+    body {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      height: 100vh !important;
+      margin: 0;
+      overflow: hidden;
     }
 
-    #mapa {
-      width: 560px;
-      height: 350px;
-      background-size: 560px 350px;
+    #mapaContainer {
+      transform: scale(0.7) !important;
+      transform-origin: top left !important;
+      width: 800px !important;
+      height: 500px !important;
+      overflow: visible !important;
     }
   }
 
