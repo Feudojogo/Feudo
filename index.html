@@ -301,6 +301,18 @@
       margin-right: 320px;     /* espaço para as colunas à direita */
     }
 
+  
+    /* --- Ajustes para telas pequenas (mobile) --- */
+    @media (max-width: 900px) {
+      body {
+        display: block;        /* remove flex para permitir scroll natural */
+        overflow-x: auto;      /* permite rolagem horizontal se necessário */
+      }
+      #containerMapa {
+        margin-right: 320px;   /* mantém espaço para colunas fixas */
+      }
+    }
+
   </style>
 </head>
 <body>
