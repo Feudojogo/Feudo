@@ -17,14 +17,14 @@
     }
 
     #mapa {
-      width: 800px;       /* 8 colunas * 100px */
+      width: 500px;       /* 8 colunas * 100px */
       height: 500px;      /* 5 linhas * 100px */
       display: grid;
       grid-template-columns: repeat(8, 100px);
       grid-template-rows: repeat(5, 100px);
       gap: 0;
       background-image: url('MAPA.png');
-      background-size: 800px 500px;
+      background-size: 500px 500px;
       user-select: none;
       position: relative;
       overflow: hidden;
@@ -289,34 +289,41 @@
       color: white;
     }
   
-  @media (max-width: 768px) {
-    body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
+/* Center map with transparent margins */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  overflow: auto;
+}
 
-    #scrollWrapper {
-      width: 100vw;
-      height: 100vh;
-      overflow-x: auto;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-    }
+#mapaContainer {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    #mapa {
-      min-width: 800px;
-      width: 800px;
-      height: 500px;
-      background-size: 800px 500px;
-    }
+/* Ensure scroll if viewport smaller than map */
+@media (max-width: 500px) {
+  body {
+    overflow-x: auto;
   }
+}
 
   </style>
 </head>
 <body>
 
-  <div id="scrollWrapper"><div id="mapa"></div>
+  <div id="mapaContainer"><div id="mapa"></div>
 
   <div id="colunaOuro">
     <h2>Ouro</h2>
