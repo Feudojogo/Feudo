@@ -6,14 +6,14 @@
   <title>Feudo 🌱 - Mapa, Ouro e Missões</title>
   <style>
     body {
+      overflow-x: auto;
       margin: 0;
       height: 100vh;
       display: flex;
       justify-content: center; /* centraliza horizontal */
       align-items: center;     /* centraliza vertical */
       font-family: Arial, sans-serif;
-      overflow-x: auto;
-      overflow-y: auto;
+      overflow: hidden;
       user-select: none;
       background: #f9f7e8;
     }
@@ -29,8 +29,7 @@
       background-size: 800px 500px;
       user-select: none;
       position: relative;
-      overflow-x: auto;
-      overflow-y: auto;
+      overflow: hidden;
       flex-grow: 0;
       margin-right: 320px; /* espaço para as colunas fixas à direita */
     }
@@ -292,22 +291,13 @@
       color: white;
     }
   
-    /* Layout grid style according to image */
-    #containerGeral {
-      width: 800px;
-      max-width: 100%%;
-    }
-    #mapaWrapper {
-      width: 800px;
-    }
-    #painelInferior {
-      width: 800px;
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-    #painelInferior .painelCol {
+    /* Mobile-first layout: full-width map, panels below */
+    #colunaOuro, #colunaBaralho {
       position: static;
+      width: 160px; /* mantém largura original */
+    }
+    #mapa {
+      width: 800px;
     }
 
   </style>
@@ -315,20 +305,20 @@
 <body>
 
   <div id="containerGeral" style="width:800px;margin:0 auto;">
-  <div id="mapaWrapper"><div id="mapa"></div></div>
-  <div id="painelInferior">
-    <div id="colunaOuroPos"></div>
-    <div id="colunaBaralhoPos"></div>
-  </div>
-</div>
-
-  <div id="colunaOuro" class="painelCol">
+  <div id="mapa"></div>
+<div id="painelInferior" style="display:flex;justify-content:space-between;margin-top:20px;">
+  <div id="colunaOuro">
     <h2>Ouro</h2>
   </div>
-
-  <div id="colunaBaralho" class="painelCol">
+  <div id="colunaBaralho">
     <h2>Missões reais</h2>
     <div id="pilhaCartas" title="Clique para puxar próxima missão"></div>
+</div>
+</div><!-- containerGeral -->
+
+  
+
+  
     <div id="textoPilha"></div>
     <div id="cartaAtual">
       <button id="btnDescartar" title="Descartar missão atual">&times;</button>
@@ -575,15 +565,6 @@
   function fecharModal() {
     modalOverlay.style.display = "none";
   }
-
-  
-  // Reposiciona colunas no novo layout
-  const posOuro = document.getElementById('colunaOuroPos');
-  const posBaralho = document.getElementById('colunaBaralhoPos');
-  const colunaOuro = document.getElementById('colunaOuro');
-  const colunaBaralho = document.getElementById('colunaBaralho');
-  posOuro.appendChild(colunaOuro);
-  posBaralho.appendChild(colunaBaralho);
 
   // Inicialização
   atualizarMapa();
