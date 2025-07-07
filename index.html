@@ -17,14 +17,14 @@
     }
 
     #mapa {
-      width: 500px;       /* 8 colunas * 100px */
-      height: 500px;      /* 5 linhas * 100px */
+      width: 250px;       /* 8 colunas * 100px */
+      height: 400px;      /* 5 linhas * 100px */
       display: grid;
       grid-template-columns: repeat(8, 100px);
       grid-template-rows: repeat(5, 100px);
       gap: 0;
       background-image: url('MAPA.png');
-      background-size: 500px 500px;
+      background-size: 250px 400px;
       user-select: none;
       position: relative;
       overflow: hidden;
@@ -289,34 +289,30 @@
       color: white;
     }
   
-/* Center map with transparent margins */
-html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
+/* Center map and set container 250x400 */
+html,body{
+  height:100%;
+  width:100%;
+  margin:0;
+  padding:0;
 }
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  overflow: auto;
-}
-
-#mapaContainer {
-  width: 500px;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:transparent;
 }
 
-/* Ensure scroll if viewport smaller than map */
-@media (max-width: 500px) {
-  body {
-    overflow-x: auto;
-  }
+#mapaContainer{
+  width:250px;
+  height:400px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.territorio{
+  font-size:0.55rem;
 }
 
   </style>
