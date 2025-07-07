@@ -6,7 +6,6 @@
   <title>Feudo 🌱 - Mapa, Ouro e Missões</title>
   <style>
     body {
-      overflow-x: auto;
       margin: 0;
       height: 100vh;
       display: flex;
@@ -31,8 +30,9 @@
       position: relative;
       overflow: hidden;
       flex-grow: 0;
-      margin-right: 320px; /* espaço para as colunas fixas à direita */
-    }
+      margin-right: 0; /* espaço para as colunas fixas à direita */
+          transform-origin: top left;
+}
 
     .territorio {
       width: 100px;
@@ -290,11 +290,22 @@
       background-color: #d9534f;
       color: white;
     }
+  
+    /* Container para permitir arrasto e zoom em mobile */
+    #containerMapa {
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;          /* permite scroll quando dar zoom */
+      position: relative;
+      touch-action: none;      /* desativa gestos padrão para controlar manualmente */
+      margin-right: 320px;     /* espaço para as colunas à direita */
+    }
+
   </style>
 </head>
 <body>
 
-  <div id="mapa"></div>
+  <div id="containerMapa"><div id="mapa"></div></div>
 
   <div id="colunaOuro">
     <h2>Ouro</h2>
@@ -571,6 +582,67 @@
   btnDescartar.onclick = () => {
     cartaAtualDiv.style.display = "none";
   };
+
+  /* === Gestos de mobile: arrastar e pinça para zoom === */
+  const containerMapa = document.getElementById('containerMapa');
+  let pointers = new Map();
+  let isDragging = false;
+  let prevX = 0, prevY = 0;
+  let initialDistance = null;
+  let scale = 1;
+
+  function setScale(newScale) {
+    scale = Math.max(0.5, Math.min(3, newScale)); // limita entre 0.5x e 3x
+    mapaDiv.style.transform = `scale(${scale})`;
+  }
+
+  containerMapa.addEventListener('pointerdown', (e) => {
+    containerMapa.setPointerCapture(e.pointerId);
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointers.size === 1) {
+      isDragging = true;
+      prevX = e.clientX;
+      prevY = e.clientY;
+    } else if (pointers.size === 2) {
+      const pts = [...pointers.values()];
+      initialDistance = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+    }
+  });
+
+  containerMapa.addEventListener('pointermove', (e) => {
+    if (!pointers.has(e.pointerId)) return;
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
+    if (pointers.size === 1 && isDragging) {
+      const dx = e.clientX - prevX;
+      const dy = e.clientY - prevY;
+      containerMapa.scrollLeft -= dx;
+      containerMapa.scrollTop -= dy;
+      prevX = e.clientX;
+      prevY = e.clientY;
+    } else if (pointers.size === 2) {
+      const pts = [...pointers.values()];
+      const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+      if (initialDistance) {
+        let newScale = scale * (dist / initialDistance);
+        setScale(newScale);
+      }
+    }
+  });
+
+  function endPointer(e) {
+    pointers.delete(e.pointerId);
+    if (pointers.size < 2) {
+      initialDistance = null;
+    }
+    if (pointers.size === 0) {
+      isDragging = false;
+    }
+  }
+
+  containerMapa.addEventListener('pointerup', endPointer);
+  containerMapa.addEventListener('pointercancel', endPointer);
+
 </script>
 
 </body>
