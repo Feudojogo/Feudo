@@ -608,11 +608,15 @@
     mapaDiv.style.transform = `scale(${scale})`;
   }
 
+  
   containerMapa.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'mouse') return; // ignora mouse no desktop
+
     containerMapa.setPointerCapture(e.pointerId);
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+
     if (pointers.size === 1) {
-      isDragging = true;
+      // arrasto
       prevX = e.clientX;
       prevY = e.clientY;
     } else if (pointers.size === 2) {
@@ -621,7 +625,8 @@
     }
   });
 
-  containerMapa.addEventListener('pointermove', (e) => {
+    containerMapa.addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'mouse') return;
     if (!pointers.has(e.pointerId)) return;
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
 
