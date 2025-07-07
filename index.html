@@ -4,107 +4,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feudo 🌱 - Mapa Mobile</title>
+  <title>Feudo 🌱 - Mapa Centralizado</title>
   <style>
-    html,body{
-      margin:0;
-      padding:0;
-      width:100vw;
-      height:100vh;
-      overflow:hidden;
-      font-family:Arial, sans-serif;
-      background:#000;
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Mapa ocupa toda a tela */
-    #mapa{
-      width:100vw;
-      height:100vh;
-      display:grid;
-      grid-template-columns:repeat(8,1fr);
-      grid-template-rows:repeat(5,1fr);
-      gap:0;
-      background-image:url('MAPA.png');
-      background-size:100% 100%;
-      position:relative;
-      user-select:none;
-      touch-action:none;
+    #mapaContainer {
+      width: calc(100vw - 113.38px);
+      height: calc(100vh - 113.38px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .territorio{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-weight:bold;
-      color:#fff;
-      border:1px solid transparent;
-      position:relative;
+    #mapa {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      background-image: url('MAPA.png');
+      background-size: 100% 100%;
+      user-select: none;
+      touch-action: none;
     }
 
-    .territorio.dominado{
-      color:#ffe;
+    .territorio {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      color: #fff;
+      position: relative;
+      border: 1px solid transparent;
     }
 
-    .territorio img{
-      position:absolute;
-      top:50%;
-      left:50%;
-      width:50%;
-      height:50%;
-      object-fit:contain;
-      transform:translate(-50%,-50%);
-      pointer-events:none;
+    .territorio.dominado {
+      color: #ffe;
     }
 
-    .nome-dono{
-      position:absolute;
-      bottom:2px;
-      font-size:0.7rem;
-      background:rgba(0,0,0,0.5);
-      padding:0 3px;
-      border-radius:3px;
-      width:100%;
-      text-align:center;
-      color:#fff;
-      user-select:none;
+    .territorio img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 50%;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
     }
 
-    /* Modal */
-    #modalOverlay{
-      position:fixed;
-      top:0;left:0;right:0;bottom:0;
-      background:rgba(0,0,0,0.6);
-      display:none;
-      justify-content:center;
-      align-items:center;
-      z-index:1000;
+    .nome-dono {
+      position: absolute;
+      bottom: 2px;
+      font-size: 0.7rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0 3px;
+      border-radius: 3px;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      user-select: none;
     }
-    #modal{
-      background:#fff;
-      padding:20px;
-      border-radius:8px;
-      max-width:320px;
-      width:90%;
-      text-align:center;
+
+    #modalOverlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
     }
-    #modal button{
-      margin:6px;
-      padding:8px 14px;
-      border:none;
-      border-radius:6px;
-      font-weight:bold;
-      cursor:pointer;
+
+    #modal {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 320px;
+      width: 90%;
+      text-align: center;
     }
-    #modal button.conquistar{background:#d4af37;color:#3b2e00;}
-    #modal button.neutro{background:#eee;color:#555;}
-    #modal button.cancelar{background:#d9534f;color:#fff;}
+
+    #modal button {
+      margin: 6px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #modal button.conquistar { background: #d4af37; color: #3b2e00; }
+    #modal button.neutro { background: #eee; color: #555; }
+    #modal button.cancelar { background: #d9534f; color: #fff; }
   </style>
 </head>
 <body>
 
-  <div id="mapa"></div>
+  <div id="mapaContainer">
+    <div id="mapa"></div>
+  </div>
 
-  <!-- Modal -->
   <div id="modalOverlay">
     <div id="modal">
       <h3>Escolha o dono do feudo 🌱</h3>
@@ -177,6 +187,7 @@
       };
       botoesModal.appendChild(btnTransfer);
     }
+
     const btnCancelar=document.createElement("button");
     btnCancelar.textContent="Cancelar";
     btnCancelar.className="cancelar";
@@ -188,7 +199,6 @@
 
   function fecharModal(){modalOverlay.style.display="none";}
 
-  // Inicialização
   atualizarMapa();
 </script>
 
