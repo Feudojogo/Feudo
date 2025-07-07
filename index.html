@@ -291,20 +291,21 @@
   
   @media (max-width: 768px) {
     body {
-      overflow-x: auto;
-      overflow-y: hidden;
       margin: 0;
       padding: 0;
-      width: 100vw;
-      height: 100vh;
+      overflow: hidden;
     }
 
-    #mapaWrapper {
-      width: 800px;
+    #scrollWrapper {
+      width: 100vw;
       height: 100vh;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
     }
 
     #mapa {
+      min-width: 800px;
       width: 800px;
       height: 500px;
       background-size: 800px 500px;
@@ -315,7 +316,7 @@
 </head>
 <body>
 
-  <div id="mapaWrapper"><div id="mapa"></div>
+  <div id="scrollWrapper"><div id="mapa"></div>
 
   <div id="colunaOuro">
     <h2>Ouro</h2>
