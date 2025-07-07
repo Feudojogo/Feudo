@@ -7,6 +7,8 @@
   <style>
     body {
       overflow-x: auto;
+      overflow-y: auto;
+      overflow-x: auto;
       margin: 0;
       height: 100vh;
       display: flex;
@@ -296,6 +298,8 @@
     /* Responsividade para telas <= 900px */
     @media (max-width: 900px) {
       body {
+      overflow-x: auto;
+      overflow-y: auto;
         display: block;        /* Desativa flex centralizado */
         justify-content: flex-start;
         align-items: flex-start;
@@ -308,7 +312,7 @@
 </head>
 <body>
 
-  <div id="mapaWrapper" style="width: 100%; overflow-x: auto; display: flex; justify-content: center;">
+  <div id="mapaWrapper" style="width: 100%; overflow-x: auto; overflow-y: hidden; white-space: nowrap;">
   <div id="mapa"></div>
 </div>
 
