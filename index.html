@@ -22,6 +22,7 @@
 
     #mapa {
       min-width: 800px;
+      min-width: 800px;
       flex-shrink: 0;
       width: 800px;       /* 8 colunas * 100px */
       height: 500px;      /* 5 linhas * 100px */
@@ -296,17 +297,20 @@
     }
   
     /* Responsividade para telas <= 900px */
+    
     @media (max-width: 900px) {
       body {
-      overflow-x: auto;
-      overflow-y: auto;
-        display: block;        /* Desativa flex centralizado */
-        justify-content: flex-start;
-        align-items: flex-start;
-        height: auto;          /* Permite altura natural */
-        overflow-x: auto;      /* Scroll horizontal na página inteira */
+        display: block;
+        height: auto;
+        overflow-x: auto !important;
+        overflow-y: auto;
+      }
+      #mapaWrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
       }
     }
+
 
   </style>
 </head>
