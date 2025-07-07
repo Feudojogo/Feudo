@@ -19,7 +19,6 @@
     }
 
     #mapa {
-      min-width: 800px;
       width: 800px;       /* 8 colunas * 100px */
       height: 500px;      /* 5 linhas * 100px */
       display: grid;
@@ -293,48 +292,14 @@
       color: white;
     }
   
-    /* ===== Mobile layout: columns join flow, body scrolls horizontally ===== */
-    
-      #colunaOuro,
-      #colunaBaralho {
-        position: static;
-        height: auto;
-        top: auto;
-        right: auto;
-      }
-      #mapaWrapper {
-        overflow-x: auto;
-      }
-    }
-
-  
-    /* ===== Mobile layout ===== */
-    @media (max-width: 900px) {
+    @media (max-width: 820px) {
       body {
-        display: block;
-        height: auto;
         overflow-x: auto;
         overflow-y: auto;
       }
-      #colunaOuro,
-      #colunaBaralho {
-        position: static;
-        height: auto;
-        top: auto;
-        right: auto;
-        width: 45%%;
-        max-width: 160px;
-      }
+      #mapaWrapper,
       #painelInferior {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 10px;
-        width: 100%%;
-        margin-top: 20px;
-      }
-      #mapaWrapper {
-        overflow-x: auto;
+        width: 800px;
       }
     }
 
@@ -342,16 +307,15 @@
 </head>
 <body>
 
-  <div id="mapaWrapper" style="overflow-x:auto; overflow-y:hidden;"><div id="mapa"></div></div>
+  <div id="mapaWrapper" style="width: 800px; margin: 0 auto;"><div id="mapa"></div></div>
 
-  <div id="painelInferior">
-<div id="colunaOuro">
+  <div id="painelInferior" style="width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; margin-top: 20px;">
+  <div style="grid-column: 1 / span 2;"><div id="colunaOuro">
     <h2>Ouro</h2>
-  </div>
-
-  <div id="colunaBaralho">
+  </div></div>
+  <div style="grid-column: 7 / span 2;"><div id="colunaBaralho">
     <h2>Missões reais</h2>
-    <div id="pilhaCartas" title="Clique para puxar próxima missão"></div>
+    <div id="pilhaCartas" title="Clique para puxar próxima missão"></div></div>
 </div>
     <div id="textoPilha"></div>
     <div id="cartaAtual">
