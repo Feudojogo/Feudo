@@ -294,6 +294,7 @@
     }
   
     /* ===== Mobile layout: columns join flow, body scrolls horizontally ===== */
+    
     @media (max-width: 900px) {
       body {
         display: block;
@@ -301,6 +302,28 @@
         overflow-x: auto;
         overflow-y: auto;
       }
+      #colunaOuro,
+      #colunaBaralho {
+        position: static;
+        height: auto;
+        top: auto;
+        right: auto;
+        display: inline-block;
+        vertical-align: top;
+        width: 48%;
+      }
+      #colunaOuro {
+        margin-right: 2%;
+      }
+      #colunaBaralho {
+        margin-left: 2%;
+      }
+      #mapaWrapper {
+        overflow-x: auto;
+        margin-bottom: 20px;
+      }
+    }
+
       #colunaOuro,
       #colunaBaralho {
         position: static;
