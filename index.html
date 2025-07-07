@@ -6,24 +6,20 @@
   <title>Feudo 🌱 - Mapa, Ouro e Missões</title>
   <style>
     body {
-      overflow-x: auto;
-      overflow-y: auto;
-      overflow-x: auto;
       margin: 0;
       height: 100vh;
       display: flex;
       justify-content: center; /* centraliza horizontal */
       align-items: center;     /* centraliza vertical */
       font-family: Arial, sans-serif;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: auto;
       user-select: none;
       background: #f9f7e8;
     }
 
     #mapa {
       min-width: 800px;
-      min-width: 800px;
-      flex-shrink: 0;
       width: 800px;       /* 8 colunas * 100px */
       height: 500px;      /* 5 linhas * 100px */
       display: grid;
@@ -34,7 +30,8 @@
       background-size: 800px 500px;
       user-select: none;
       position: relative;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: auto;
       flex-grow: 0;
       margin-right: 320px; /* espaço para as colunas fixas à direita */
     }
@@ -296,29 +293,31 @@
       color: white;
     }
   
-    /* Responsividade para telas <= 900px */
-    
+    /* ===== Mobile layout: columns join flow, body scrolls horizontally ===== */
     @media (max-width: 900px) {
       body {
         display: block;
         height: auto;
-        overflow-x: auto !important;
+        overflow-x: auto;
         overflow-y: auto;
+      }
+      #colunaOuro,
+      #colunaBaralho {
+        position: static;
+        height: auto;
+        top: auto;
+        right: auto;
       }
       #mapaWrapper {
         overflow-x: auto;
-        overflow-y: hidden;
       }
     }
-
 
   </style>
 </head>
 <body>
 
-  <div id="mapaWrapper" style="width: 100%; overflow-x: auto; overflow-y: hidden; white-space: nowrap;">
-  <div id="mapa"></div>
-</div>
+  <div id="mapaWrapper" style="overflow-x:auto; overflow-y:hidden;"><div id="mapa"></div></div>
 
   <div id="colunaOuro">
     <h2>Ouro</h2>
