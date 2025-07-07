@@ -5,6 +5,7 @@
   <title>Feudo 🌱 - Mapa, Ouro e Missões</title>
   <style>
     body {
+  min-width: 1000px;
       margin: 0;
       height: 100vh;
       display: flex;
@@ -17,14 +18,14 @@
     }
 
     #mapa {
-      width: 250px;       /* 8 colunas * 100px */
-      height: 400px;      /* 5 linhas * 100px */
+      width: 800px;       /* 8 colunas * 100px */
+      height: 500px;      /* 5 linhas * 100px */
       display: grid;
       grid-template-columns: repeat(8, 100px);
       grid-template-rows: repeat(5, 100px);
       gap: 0;
       background-image: url('MAPA.png');
-      background-size: 250px 400px;
+      background-size: 800px 500px;
       user-select: none;
       position: relative;
       overflow: hidden;
@@ -288,38 +289,11 @@
       background-color: #d9534f;
       color: white;
     }
-  
-/* Center map and set container 250x400 */
-html,body{
-  height:100%;
-  width:100%;
-  margin:0;
-  padding:0;
-}
-body{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:transparent;
-}
-
-#mapaContainer{
-  width:250px;
-  height:400px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-.territorio{
-  font-size:0.55rem;
-}
-
   </style>
 </head>
 <body>
 
-  <div id="mapaContainer"><div id="mapa"></div>
+  <div id="mapa"></div>
 
   <div id="colunaOuro">
     <h2>Ouro</h2>
