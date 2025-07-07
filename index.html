@@ -292,31 +292,43 @@
       color: white;
     }
   
-    @media (max-width: 820px) {
-      body {
-        overflow-x: auto;
-        overflow-y: auto;
-      }
-      #mapaWrapper,
-      #painelInferior {
-        width: 800px;
-      }
+    /* Layout grid style according to image */
+    #containerGeral {
+      width: 800px;
+      max-width: 100%%;
+    }
+    #mapaWrapper {
+      width: 800px;
+    }
+    #painelInferior {
+      width: 800px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    #painelInferior .painelCol {
+      position: static;
     }
 
   </style>
 </head>
 <body>
 
-  <div id="mapaWrapper" style="width: 800px; margin: 0 auto;"><div id="mapa"></div></div>
-
-  <div id="painelInferior" style="width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; margin-top: 20px;">
-  <div style="grid-column: 1 / span 2;"><div id="colunaOuro">
-    <h2>Ouro</h2>
-  </div></div>
-  <div style="grid-column: 7 / span 2;"><div id="colunaBaralho">
-    <h2>Missões reais</h2>
-    <div id="pilhaCartas" title="Clique para puxar próxima missão"></div></div>
+  <div id="containerGeral" style="width:800px;margin:0 auto;">
+  <div id="mapaWrapper"><div id="mapa"></div></div>
+  <div id="painelInferior">
+    <div id="colunaOuroPos"></div>
+    <div id="colunaBaralhoPos"></div>
+  </div>
 </div>
+
+  <div id="colunaOuro" class="painelCol">
+    <h2>Ouro</h2>
+  </div>
+
+  <div id="colunaBaralho" class="painelCol">
+    <h2>Missões reais</h2>
+    <div id="pilhaCartas" title="Clique para puxar próxima missão"></div>
     <div id="textoPilha"></div>
     <div id="cartaAtual">
       <button id="btnDescartar" title="Descartar missão atual">&times;</button>
@@ -563,6 +575,15 @@
   function fecharModal() {
     modalOverlay.style.display = "none";
   }
+
+  
+  // Reposiciona colunas no novo layout
+  const posOuro = document.getElementById('colunaOuroPos');
+  const posBaralho = document.getElementById('colunaBaralhoPos');
+  const colunaOuro = document.getElementById('colunaOuro');
+  const colunaBaralho = document.getElementById('colunaBaralho');
+  posOuro.appendChild(colunaOuro);
+  posBaralho.appendChild(colunaBaralho);
 
   // Inicialização
   atualizarMapa();
