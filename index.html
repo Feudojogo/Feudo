@@ -18,14 +18,14 @@
     }
 
     #mapa {
-      width: 800px;       /* 8 colunas * 100px */
-      height: 500px;      /* 5 linhas * 100px */
+      width: 500px;       /* 8 colunas * 100px */
+      height: 800px;      /* 5 linhas * 100px */
       display: grid;
-      grid-template-columns: repeat(8, 100px);
-      grid-template-rows: repeat(5, 100px);
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(8, 1fr);
       gap: 0;
       background-image: url('MAPA.png');
-      background-size: 800px 500px;
+      background-size: 500px 800px;
       user-select: none;
       position: relative;
       overflow: hidden;
